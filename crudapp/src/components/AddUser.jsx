@@ -1,7 +1,8 @@
-import { FormGroup,FormControl, Input, InputLabel, styled, Button } from '@mui/material';
+import { FormGroup,FormControl, Input, InputLabel, styled, Button, Typography} from '@mui/material';
 import { useState } from 'react';
 import { addUserDetails } from '../service/api';
 import { useNavigate } from 'react-router-dom';
+import { textAlign } from '@mui/system';
 
 
 const Container=styled(FormGroup)
@@ -12,6 +13,7 @@ margin: 5% auto 0 auto;
   margin-top:20px;
 }
 `;
+
 
 const defaultValue={
     name:"",
@@ -39,6 +41,7 @@ const AddUser=()=>{
 
     return (
        <Container>
+           <Typography variant='h4'>Add Details</Typography>
            <FormControl>
                <InputLabel>Name</InputLabel>
                <Input onChange={(e)=>onClickValue(e)} name="name" />

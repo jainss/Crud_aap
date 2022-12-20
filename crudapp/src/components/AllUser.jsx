@@ -4,10 +4,12 @@ import {
   TableCell,
   TableRow,
   TableBody,
+  Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { showUserDetail } from "../service/api";
+import { showUserDetail, deleteUser } from "../service/api";
 import { styled } from "@mui/system";
+import {Link} from  "react-router-dom";
 
 const StyleTable=styled(Table)
 `
@@ -17,7 +19,8 @@ const StyleTable=styled(Table)
 const THead = styled(TableRow)
 `
 & > th {
-  background: #000000;
+  background: #808080
+  ;
   color: #fff;
   font-size:20px;
   
@@ -43,6 +46,11 @@ const AllUser = () => {
     setUsers(response.data);
   };
 
+  const deleteuserDetails=async(id)=>{
+    await deleteUser(id);
+    getAllUsers();
+  }
+
   return (
     <StyleTable>
       <TableHead>
@@ -52,16 +60,24 @@ const AllUser = () => {
           <TableCell>UserName</TableCell>
           <TableCell>Email</TableCell>
           <TableCell>Phone</TableCell>
+          <TableCell>Change</TableCell>
+          <TableCell>Remove</TableCell>
         </THead>
       </TableHead>
       <TableBody>
         {users.map((user) => (
-          <TRow>
+          <TRow key={user._id}>
             <TableCell>{user._id}</TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.phone}</TableCell>
+            <TableCell>
+              <Button variant="outlined" component={Link} to={`/edit/${user._id}`}>Edit</Button>
+            </TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={()=>deleteuserDetails(user._id)}>Delete</Button>
+            </TableCell>
           </TRow>
         ))}
       </TableBody>
