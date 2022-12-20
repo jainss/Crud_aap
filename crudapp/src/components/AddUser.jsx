@@ -2,7 +2,6 @@ import { FormGroup,FormControl, Input, InputLabel, styled, Button, Typography} f
 import { useState } from 'react';
 import { addUserDetails } from '../service/api';
 import { useNavigate } from 'react-router-dom';
-import { textAlign } from '@mui/system';
 
 
 const Container=styled(FormGroup)
