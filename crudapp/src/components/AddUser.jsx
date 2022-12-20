@@ -1,6 +1,7 @@
 import { FormGroup,FormControl, Input, InputLabel, styled, Button } from '@mui/material';
 import { useState } from 'react';
 import { addUserDetails } from '../service/api';
+import { useNavigate } from 'react-router-dom';
 
 
 const Container=styled(FormGroup)
@@ -21,6 +22,8 @@ const defaultValue={
 
 const AddUser=()=>{
 
+    const navigate= useNavigate();
+
     const [user, setUser] = useState(defaultValue);
 
     const onClickValue=(e)=>{
@@ -31,6 +34,7 @@ const AddUser=()=>{
 
     const onSubmit=async()=>{
         await addUserDetails(user);
+        navigate('/all');
     }
 
     return (

@@ -11,3 +11,13 @@ export const addUser=async(req,res,next)=>{
         res.status(409).json({message: err.message});
     }
 }
+
+
+export const getUsers=async(req,res,next)=>{
+   try{
+      const users= await User.find({});
+      res.status(201).json(users);
+   }catch(err){
+      res.status(409).json({message:err.message});
+   }
+}
